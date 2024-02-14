@@ -18,3 +18,4 @@ Faire un fichier avec les détails des nombres et des transitions simples
 Idées pour les transitions :
 "Je suis batman"
 PACMAN
+transitions simplesw ou complexes (faire bouger uniquement les hirloges concernées ou toutes les horloges)
