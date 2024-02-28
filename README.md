@@ -35,3 +35,22 @@ Idées pour les transitions :
 PACMAN
 
 transitions simplesw ou complexes (faire bouger uniquement les hirloges concernées ou toutes les horloges)
+
+
+
+
+<h1>SEANCE 21 / 02: </h1>
+-classe horloge , classe essai horloge 
+on a fait un programme qui dessine une horloge et met ses aiguilles en une position spécifique . 
+
+
+<h1>SEANCE 28 / 02: </h1>
+
+<h3>OBJECTIFS: </h3><ul><li>-Faire une classe grille qui dessine toutes les horloges,</li>
+<li> faire une classe chiffre qui dessine un chiffre donné en argument </li>
+</ul>
+
+
+
+<h3>QUESTIONS: </h3>
+-Confirmer que c'est deux programmes différents (un simulateur + un code = on fait dssiner le truc directement)
