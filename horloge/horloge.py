@@ -1,6 +1,7 @@
 import math
 
 import pygame
+from Aiguille import Aiguille
 
 """ 
     Classe Horloge :
