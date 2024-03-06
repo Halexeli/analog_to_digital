@@ -2,21 +2,45 @@ import math
 
 import pygame
 
-
+"""
+Classe Aiguille  : 
+    Permet de créer une aiguille pour une horloge
+"""
 class Aiguille():
+    """
+        Constructeur : 
+        - goal_theta : angle but de l'aiguille
+        - current_theta : angle actuel de l'aiguille
+        - pas : distance parcourue en une "visualisation"
+        - taille : taille de l'aiguille
+    """
     def __init__(self,taille=80):
         self.goal_theta=0 #but
         self.current_theta=0 #position actuelle
         self.pas=1 #distance parcourue en une "visualisation"
         self.taille=taille #taille de l'aiguille
 
+    """
+        Méthode set_goal_theta :
+        Permet de changer l'angle but de l'aiguille
+        - theta : angle but de l'aiguille
+    """
     def set_goal_theta(self,theta):
         self.goal_theta=theta%360 
-
+    """
+    Méthode set_current_theta :
+    Permet de changer l'angle actuel de l'aiguille
+    - theta : angle actuel de l'aiguille
+    """
     def set_current_theta(self):
         self.current_theta+=self.pas
         self.current_theta=self.current_theta%360
-
+    """
+    Méthode dessiner_aiguille :
+    Permet de dessiner l'aiguille
+    - pos : position de l'aiguille
+    - screen : écran de la simulation
+    """
     def dessiner_aiguille(self, pos, screen):
         eps=self.goal_theta-self.current_theta #pour tester notre condition d'arrêt
         next_pas=self.pas # pour que l'arrêt soit fluide 
@@ -30,34 +54,9 @@ class Aiguille():
         pygame.draw.line(screen, "red", pos, pos1, 5 )
         self.pas=next_pas
 
-
+    """
+    Méthode set_pas :
+    Permet de changer le pas de l'aiguille (Vitesse de rotation)
+    """
     def set_pas(self,pas):
         self.pas=pas
-
-class Horloge():
-    def __init__(self, pos_0=(0,0), rayon=100, width=3):
-        self.pos_0=pos_0
-        self.aiguille_1=Aiguille(rayon*0.8)
-        self.aiguille_2=Aiguille(rayon*0.8)
-        self.rayon=rayon
-        self.width=width
-
-    def set_aiguille(self,theta_1,theta_2):
-        self.aiguille_1.set_goal_theta(theta_1)
-        self.aiguille_2.set_goal_theta(theta_2)
-
-    def set_aig_pas(self,pas1,pas2):
-        self.aiguille_1.set_pas(pas1)
-        self.aiguille_2.set_pas(pas2)
-
-
-    def dessiner(self, screen):
-        pygame.draw.circle(screen, "black", self.pos_0, self.rayon,self.width)
-        self.aiguille_1.dessiner_aiguille(self.pos_0,screen)
-        self.aiguille_2.dessiner_aiguille(self.pos_0,screen)
-
-
-
-
-
-
