@@ -8,19 +8,17 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
     conn, addr = s.accept()
+    conn.setblocking(0)
     with conn:
-        print(f"Connected by {addr}")
-        while True:
-            data = conn.recv(1024)
-            if data:
-                try:
-                    data_dict = pickle.loads(data)
-                    if 'jack' in data_dict:
-                        print(data_dict['jack'])
-                    else:
-                        print("No 'jack' in received data")
-                except Exception as e:
-                    print(f"Error while deserializing data: {e}")
-            else:
-                print("No data received")
-            conn.sendall(data)
+        while 1:
+            try:
+                data = conn.recv(1024)
+                if data:
+                    # Si des données ont été reçues, les traiter
+                    print("Données reçues :", pickle.loads(data))
+                else:
+                    # Si aucune donnée n'a été reçue
+                    print("Aucune donnée disponible pour le moment")
+            except:
+                # Gérer l'erreur de non-blocage
+                pass

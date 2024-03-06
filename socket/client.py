@@ -15,7 +15,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         # Encodage de l'array en bytes avec pickle
         array_bytes = pickle.dumps(my_array)
-        time.sleep(30)
+        time.sleep(15)
         # Envoi des données encodées
         s.sendall(array_bytes)
         i=i+1
