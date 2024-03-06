@@ -1,7 +1,6 @@
 import math
 import sys
 from datetime import datetime
-
 import numpy as np
 import pygame
 from horloge import Horloge
@@ -18,12 +17,11 @@ nbcolonne=int(sys.argv[4])
 # On initialise pygame et on crée un écran de largeur et hauteur données en argument
 pygame.init()
 screen = pygame.display.set_mode((largeur, hauteur))
-# On crée une horloge
+# On crée une horloge pour pygame
 clock = pygame.time.Clock()
 running = True # on initialise une variable pour savoir si le programme est en cours d'exécution
 dt = 0 # on initialise un delta time
-i=0 # on initialise des compteurs
-j=0
+
 a=(largeur-20)/ nbcolonne #on calcule la largeur possible
 b=(hauteur-20)/nbligne # on calcule la hauteur possible d'une horloge
 if a>b:
@@ -31,6 +29,8 @@ if a>b:
 else:
     lar=1 #inverse
 ray=min(a,b)*0.45 # on calcule le rayon de l'horloge
+
+#pour la matrice d'horloges
 Liste_horloge=[] # on initialise une liste pour stocker les horloges
 for i in range(nbcolonne):
     Liste_horloge2=[]  # on initialise une liste pour stocker les horloges pour faire la matrice
@@ -39,12 +39,9 @@ for i in range(nbcolonne):
             horloge=Horloge((i*a + a/2 +10,j*a + a/2 +10+(b-a)/2*nbligne), ray) # on crée une horloge centré avec le meme espace entre elles
         else:
             horloge=Horloge((i*b + b/2 +10+(a-b)/2*nbcolonne,j*b + b/2 +10), ray) # on crée une horloge
-        horloge.set_aiguille(359,359) # on initialise les aiguilles
-        horloge.set_aig_pas(1,1) # on initialise les pas des aiguilles
         Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
-    Liste_horloge.append(Liste_horloge2) # on ajoute à la liste.
+    Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.
 
-t=0
 while running: # tant que le programme est en cours d'exécution
     now=datetime.now().time() # on récupère l'heure actuelle
 
@@ -68,6 +65,5 @@ while running: # tant que le programme est en cours d'exécution
     # dt = delta time in seconds since last frame, used for framerate-
     # independent physics.
     dt = clock.tick_busy_loop(60) / 1000 #nombre de secondes depuis le dernier appel de tick
-    t=t+dt
     
 pygame.quit()
