@@ -24,13 +24,21 @@ running = True # on initialise une variable pour savoir si le programme est en c
 dt = 0 # on initialise un delta time
 i=0 # on initialise des compteurs
 j=0
-a=min((largeur-20)/ nbcolonne,(hauteur-20)/nbligne) # on calcule la largeur d'une horloge
-ray=a*0.45 # on calcule le rayon de l'horloge
+a=(largeur-20)/ nbcolonne
+b=(hauteur-20)/nbligne # on calcule la hauteur d'une horloge
+if a>b:
+    lar=0
+else:
+    lar=1
+ray=min(a,b)*0.45 # on calcule le rayon de l'horloge
 Liste_horloge=[] # on initialise une liste pour stocker les horloges
 for i in range(nbcolonne):
     Liste_horloge2=[]  # on initialise une liste pour stocker les horloges pour faire la matrice
     for j in range(nbligne): 
-        horloge=Horloge((i*a + a/2 +10,j*a + a/2 +10), ray) # on crée une horloge
+        if lar:
+            horloge=Horloge((i*a + a/2 +10,j*a + a/2 +10+(b-a)/2*nbligne), ray) # on crée une horloge
+        else:
+            horloge=Horloge((i*b + b/2 +10+(a-b)/2*nbcolonne,j*b + b/2 +10), ray) # on crée une horloge
         horloge.set_aiguille(359,359) # on initialise les aiguilles
         horloge.set_aig_pas(1,1) # on initialise les pas des aiguilles
         Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
@@ -52,9 +60,6 @@ while running: # tant que le programme est en cours d'exécution
         for j in range(nbligne):
             horloge=Liste_horloge[i][j] # on récupère l'horloge
             horloge.dessiner(screen) # on dessine l'horloge
-            if horloge.aiguille_1.current_theta==189:
-                print(t)
-                horloge.set_aiguille(180,180)
             
     #print(player_pos)
     # flip() le display pour afficher sur l'écran
