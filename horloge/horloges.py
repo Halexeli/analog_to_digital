@@ -1,19 +1,30 @@
 import math
+import pickle
+import socket
+import subprocess
 import sys
+import time
 from datetime import datetime
 
 import numpy as np
 import pygame
-from horloge import Horloge
 from Aiguille import Aiguille
 
-# pygame setup
+from horloge import Horloge
 
 # On récupère les arguments passés à notre programme (hauteur, largeur, nbligne, nbcolonne)
 hauteur=int (sys.argv[1])
 largeur=int (sys.argv[2])
 nbligne=int(sys.argv[3])
 nbcolonne=int(sys.argv[4])
+url="./horloge/main.py"
+subprocess.Popen(["/opt/homebrew/bin/python3",url, str(nbligne), str(nbcolonne)]) 
+
+HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
+PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
+# pygame setup
+
+
 
 # On initialise pygame et on crée un écran de largeur et hauteur données en argument
 pygame.init()
@@ -45,29 +56,60 @@ for i in range(nbcolonne):
     Liste_horloge.append(Liste_horloge2) # on ajoute à la liste.
 
 t=0
-while running: # tant que le programme est en cours d'exécution
-    now=datetime.now().time() # on récupère l'heure actuelle
 
-    # on parcourt tous les événements qui ont eu lieu
-    # pygame.QUIT = l'utilisateur a cliqué sur X pour fermer la fenêtre
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    
-    # fill l'ecran avec une couleur pour effacer les frames précédents
-    screen.fill("white")
-    for i in range(nbcolonne):
-        for j in range(nbligne):
-            horloge=Liste_horloge[i][j] # on récupère l'horloge
-            horloge.dessiner(screen) # on dessine l'horloge
+
+
+
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    conn.setblocking(0)
+    with conn:
+        while running: # tant que le programme est en cours d'exécution
+            try:
+                data = conn.recv(1024)
+                if data:
+                    # Si des données ont été reçues, les traiter
+                    print("Données reçues :", pickle.loads(data))
+                    datarecup=pickle.loads(data)
+                    for i in range(nbcolonne):
+                        for j in range(nbligne):
+                            print("on est avant for\n")
+                            (Liste_horloge[i][j]).set_aiguille(datarecup[i][j]["theta_1"], datarecup[i][j]["theta_2"])
+                            (Liste_horloge[i][j]).set_aig_pas(datarecup[i][j]["pas1"], datarecup[i][j]["pas2"])
+                            print("on est dans for\n")
+                    conn.sendall(b'1')
+                else:
+                    # Si aucune donnée n'a été reçue
+                    print("Aucune donnée disponible pour le moment")
+                
+            except:
+                # Gérer l'erreur de non-blocage
+                pass
+            now=datetime.now().time() # on récupère l'heure actuelle
+
+            # on parcourt tous les événements qui ont eu lieu
+            # pygame.QUIT = l'utilisateur a cliqué sur X pour fermer la fenêtre
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
             
-    #print(player_pos)
-    # flip() le display pour afficher sur l'écran
-    pygame.display.flip()
-    # limiter le framerate à 60fps
-    # dt = delta time in seconds since last frame, used for framerate-
-    # independent physics.
-    dt = clock.tick_busy_loop(60) / 1000 #nombre de secondes depuis le dernier appel de tick
-    t=t+dt
+            # fill l'ecran avec une couleur pour effacer les frames précédents
+            screen.fill("white")
+            for i in range(nbcolonne):
+                for j in range(nbligne):
+                    horloge=Liste_horloge[i][j] # on récupère l'horloge
+                    horloge.dessiner(screen) # on dessine l'horloge
+                    
+            #print(player_pos)
+            # flip() le display pour afficher sur l'écran
+            pygame.display.flip()
+            # limiter le framerate à 60fps
+            # dt = delta time in seconds since last frame, used for framerate-
+            # independent physics.
+            dt = clock.tick_busy_loop(60) / 1000 #nombre de secondes depuis le dernier appel de tick
+            t=t+dt
     
 pygame.quit()

@@ -11,7 +11,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     i=0
     while(1):
-        my_array = {'jack': 4098, 'sape': 4139}
+        my_array = [{'jack': 4098, 'sape': 4139}, {'jack': 4098, 'sape': 4139} ]
 
         # Encodage de l'array en bytes avec pickle
         array_bytes = pickle.dumps(my_array)
