@@ -24,14 +24,13 @@ running = True # on initialise une variable pour savoir si le programme est en c
 dt = 0 # on initialise un delta time
 i=0 # on initialise des compteurs
 j=0
-a=(largeur-20)/ nbcolonne # on calcule la largeur d'une horloge
-b=(hauteur-20) / nbligne # on calcule la hauteur d'une horloge
-ray=min(a,b)*0.45 # on calcule le rayon de l'horloge
+a=min((largeur-20)/ nbcolonne,(hauteur-20)/nbligne) # on calcule la largeur d'une horloge
+ray=a*0.45 # on calcule le rayon de l'horloge
 Liste_horloge=[] # on initialise une liste pour stocker les horloges
 for i in range(nbcolonne):
     Liste_horloge2=[]  # on initialise une liste pour stocker les horloges pour faire la matrice
     for j in range(nbligne): 
-        horloge=Horloge((i*a + a/2 +10,j*b + b/2 +10), ray) # on crée une horloge
+        horloge=Horloge((i*a + a/2 +10,j*a + a/2 +10), ray) # on crée une horloge
         horloge.set_aiguille(359,359) # on initialise les aiguilles
         horloge.set_aig_pas(1,1) # on initialise les pas des aiguilles
         Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
