@@ -26,8 +26,8 @@ class Horloge():
     - theta_2 : angle but de la deuxième aiguille
     """
     def set_aiguille(self,theta_1,theta_2):
-        self.aiguille_1.set_goal_theta(theta_1)
-        self.aiguille_2.set_goal_theta(theta_2)
+        self.aiguille_1.goal_theta=theta_1%360
+        self.aiguille_2.goal_theta=theta_2%360
 
     """
     Méthode set_aig_pas :
@@ -36,8 +36,8 @@ class Horloge():
     - pas2 : pas de la deuxième aiguille
     """
     def set_aig_pas(self,pas1,pas2):
-        self.aiguille_1.set_pas(pas1)
-        self.aiguille_2.set_pas(pas2)
+        self.aiguille_1.pas=pas1
+        self.aiguille_2.pas=pas2
     """
     Méthode dessiner :
     Permet de dessiner l'horloge

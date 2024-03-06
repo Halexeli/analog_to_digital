@@ -21,21 +21,6 @@ class Aiguille():
         self.taille=taille #taille de l'aiguille
 
     """
-        Méthode set_goal_theta :
-        Permet de changer l'angle but de l'aiguille
-        - theta : angle but de l'aiguille
-    """
-    def set_goal_theta(self,theta):
-        self.goal_theta=theta%360 
-    """
-    Méthode set_current_theta :
-    Permet de changer l'angle actuel de l'aiguille
-    - theta : angle actuel de l'aiguille
-    """
-    def set_current_theta(self):
-        self.current_theta+=self.pas
-        self.current_theta=self.current_theta%360
-    """
     Méthode dessiner_aiguille :
     Permet de dessiner l'aiguille
     - pos : position de l'aiguille
@@ -49,18 +34,13 @@ class Aiguille():
         eps=self.goal_theta-self.current_theta #pour tester notre condition d'arrêt
         next_pas=self.pas # pour que l'arrêt soit fluide 
         if abs(eps)>=abs(self.pas):
-            self.set_current_theta() #l'aiguille avance
+            self.current_theta+=self.pas
+            self.current_theta=self.current_theta%360 #l'aiguille avance, on avance current_theta
         elif abs(eps)!=0:
             next_pas=self.pas #pour que l'aiguile s'arrête exactement a la bonne position
             self.pas=eps
-            self.set_current_theta()
+            self.current_theta+=self.pas
+            self.current_theta=self.current_theta%360 #on avance current_theta
         pos1=(pos[0]+self.taille*math.cos(2*math.pi/360*self.current_theta),pos[1]+ self.taille*math.sin(2*math.pi/360*self.current_theta))
         pygame.draw.line(screen, "red", pos, pos1, 5 )
         self.pas=next_pas
-
-    """
-    Méthode set_pas :
-    Permet de changer le pas de l'aiguille (Vitesse de rotation)
-    """
-    def set_pas(self,pas):
-        self.pas=pas
