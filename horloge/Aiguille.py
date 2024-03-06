@@ -11,7 +11,7 @@ class Aiguille():
         Constructeur : 
         - goal_theta : angle but de l'aiguille
         - current_theta : angle actuel de l'aiguille
-        - pas : distance parcourue en une "visualisation"
+        - pas : distance parcourue en une "visualisation", 1 pas correspond a entre 62 et 63 degrées par secondes
         - taille : taille de l'aiguille
     """
     def __init__(self,taille=80):
@@ -39,7 +39,11 @@ class Aiguille():
     Méthode dessiner_aiguille :
     Permet de dessiner l'aiguille
     - pos : position de l'aiguille
-    - screen : écran de la simulation
+    - screen : écran de la simulat            if(t%500==0): # on change l'angle des aiguilles toutes les 500 frames
+                # on change l'angle des aiguilles
+                horloge.set_aiguille(horloge.aiguille_1.goal_theta-35,horloge.aiguille_2.goal_theta+45)
+                # on change le pas des aiguilles
+                horloge.aiguille_1.set_pas(horloge.aiguille_1.pas*-1)ion
     """
     def dessiner_aiguille(self, pos, screen):
         eps=self.goal_theta-self.current_theta #pour tester notre condition d'arrêt
