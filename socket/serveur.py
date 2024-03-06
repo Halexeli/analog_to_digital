@@ -13,6 +13,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         while True:
             data = conn.recv(1024)
             if data:
-                print(pickle.loads(data)['jack'])
-            print("test")
+                try:
+                    data_dict = pickle.loads(data)
+                    if 'jack' in data_dict:
+                        print(data_dict['jack'])
+                    else:
+                        print("No 'jack' in received data")
+                except Exception as e:
+                    print(f"Error while deserializing data: {e}")
+            else:
+                print("No data received")
             conn.sendall(data)
