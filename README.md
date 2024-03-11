@@ -101,3 +101,13 @@ faire transition classes et améliorer le code
  <li>verifier si la taille de l'écran et l'espace entre les horloges n'impactent pas l'esthétisme</li>
     
 </ul>
+
+<h3>COMMANDES POSSIBLES</h3>
+<ul>
+<li>attendre 10.5 #attendre 10.5 secondes</li>
+<li>tourne [0,1] 90 1 #tourne l'horloge en position [0][1] de 90 degrees avec un pas de 1</li>
+<li>tourne -t 90 1 #tourne toutes les horloges de 90 degrees avec un pas de 1</li>
+<li>tourne -m [[[90,1][90,1][90,1]][[90,1][90,1][95,1]]] #tourne les horloges de 90 degrees avec un pas de 1, la derniere a 95°</li>
+
+  
+</ul>
