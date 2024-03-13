@@ -111,3 +111,12 @@ faire transition classes et améliorer le code
 
   
 </ul>
+
+<h1>SEANCE 13/03</h1>
+<h3>OBJECTIFS</h3>
+<ul>
+  <li>Docopt: comprendre l'intérêt</li>
+  <li>Envoyer unn fichier json avec plein de bibliotheques/commandes</li>
+  <li> Pouvoir lancer horloges.py (simulateur) et ensuite pouvoir lancer main.py avec plusieurs fichiers </li>
+  <li> dans horloges.py , pouvoir attendre des temps t</li>
+</ul>
