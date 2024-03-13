@@ -121,5 +121,6 @@ faire transition classes et améliorer le code
   <li> dans horloges.py , pouvoir attendre des temps t</li>
   <li> pour les sockets au moins envoyer u message pour dire attendre</li>
   <li> On transforme les matrices en liste</li>
+  <li> Rendre les choses plus propres</li>
   
 </ul>
