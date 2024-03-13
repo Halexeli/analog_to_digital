@@ -119,4 +119,6 @@ faire transition classes et améliorer le code
   <li>Envoyer unn fichier json avec plein de bibliotheques/commandes</li>
   <li> Pouvoir lancer horloges.py (simulateur) et ensuite pouvoir lancer main.py avec plusieurs fichiers </li>
   <li> dans horloges.py , pouvoir attendre des temps t</li>
+  <li> pour les sockets au moins envoyer u message pour dire attendre</li>
+  
 </ul>
