@@ -48,9 +48,3 @@ class Horloge():
         pygame.draw.circle(screen, "black", self.pos_0, self.rayon,self.width)
         self.aiguille_1.dessiner_aiguille(self.pos_0,screen,couleur)
         self.aiguille_2.dessiner_aiguille(self.pos_0,screen,couleur)
-
-
-
-
-
-

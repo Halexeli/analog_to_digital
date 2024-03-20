@@ -4,6 +4,7 @@ import socket
 import subprocess
 import sys
 import time
+from threads import MonThread
 from datetime import datetime
 
 import numpy as np
@@ -52,10 +53,9 @@ for i in range(nbcolonne):
         Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
     Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.
 
-
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
-    s.listen()
+    s.listen(10)
     conn, addr = s.accept()
     conn.setblocking(0)
     with conn:
@@ -76,7 +76,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             except:
                 # Gérer l'erreur de non-blocage
                 pass
-           
+                
             # on parcourt tous les événements qui ont eu lieu
             # pygame.QUIT = l'utilisateur a cliqué sur X pour fermer la fenêtre
             for event in pygame.event.get():
