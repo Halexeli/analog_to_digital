@@ -1,0 +1,8 @@
+{
+    "init_position_chiffre": [1, 1, 1, 3, 1, 5, 1, 7], 
+    "fichier_chiffre_name": "./chiffres.json",
+    "fichier_cadre_name": "./cadre.json",
+    "fichier_transition_minute": "./polytech_transition.json",
+    "fichier_transition_heure": "./polytech_transition.json"
+
+}
