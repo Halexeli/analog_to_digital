@@ -1,17 +1,15 @@
 
 import json
 
-with open('./dataretour.json') as mon_fichier:
+with open('./polytech.json') as mon_fichier:
     data = json.load(mon_fichier)
 
 
 for i in data:
     for j in i[1]:
-        for t in j[0]:
-            a=t[0]
-            t[0]=t[1]
-            t[1]=a
+        j[1][2]=(j[1][2]*2)
+        j[1][3]=(j[1][3]*2)
 
 
-with open('./dataretour.json', "w") as f:
+with open('./polytech.json', "w") as f:
     json.dump(data, f)

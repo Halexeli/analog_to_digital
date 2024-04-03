@@ -70,13 +70,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                             pos,t1,t2,p1,p2=i
                             colonne,ligne=pos
                             (Liste_horloge[colonne][ligne]).set_aiguille(t1, t2)
-                            (Liste_horloge[colonne][ligne]).set_aig_pas(p1, p2)
+                            (Liste_horloge[colonne][ligne]).set_aig_tps(p1, p2)
                             #print(Liste_horloge[colonne][ligne])
                     conn.sendall(b'1')
             except:
                 # Gérer l'erreur de non-blocage
                 pass
-                
+
             # on parcourt tous les événements qui ont eu lieu
             # pygame.QUIT = l'utilisateur a cliqué sur X pour fermer la fenêtre
             for event in pygame.event.get():
@@ -88,10 +88,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             for i in range(nbcolonne):
                 for j in range(nbligne):
                     horloge=Liste_horloge[i][j] # on récupère l'horloge
-                    if j==0 or j==nbligne-1:
-                        horloge.dessiner(screen,couleur="brown") # on dessine l'horloge
-                    else:
-                        horloge.dessiner(screen,couleur="blue")
+                    horloge.dessiner(screen,couleur="blue")
 
             pygame.display.flip()
             # limiter le framerate à 60fps

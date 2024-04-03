@@ -13,13 +13,11 @@ time.sleep(1)
 
 import json
 
-with open('./dataretour.json') as mon_fichier:
+with open('./polytech.json') as mon_fichier:
     texte = json.load(mon_fichier)
 
 
-nbligne=int(sys.argv[1])
 Liste_horloge=[]
-nbcolonne=int(sys.argv[2])
 a=0
 
 
