@@ -61,13 +61,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     with conn:
         while running: # tant que le programme est en cours d'exécution
             try:
-                data = conn.recv(2048)
+                data = conn.recv(4096)
                 if data:
                     # Si des données ont été reçues, les traiter
+                    print("ok")
                     datarecup=pickle.loads(data)
-                    #print(datarecup)
+                    print(datarecup)
                     for i in datarecup:
                             pos,t1,t2,p1,p2=i
+                            print(t1)
+                            print(t2)
                             colonne,ligne=pos
                             (Liste_horloge[colonne][ligne]).set_aiguille(t1, t2)
                             (Liste_horloge[colonne][ligne]).set_aig_tps(p1, p2)
