@@ -13,7 +13,7 @@ time.sleep(1)
 
 import json
 
-with open('./dataretour.json') as mon_fichier:
+with open('python\\fichier\\etoile.json') as mon_fichier:
     texte = json.load(mon_fichier)
 
 
