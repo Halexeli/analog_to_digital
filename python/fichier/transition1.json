@@ -6,6 +6,7 @@
     "longeur": 16,
     "hauteur":5,
     "position_cadre_haut": [1,4],
-    "position_cadre_bas":[3,11]
+    "position_cadre_bas":[3,11],
+    "fonction_cadre_chiffre_name":"fonction_cadre_cran"
 
 }

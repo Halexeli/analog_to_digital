@@ -1,12 +1,13 @@
 # echo-client.py
 
+import importlib
 import pickle
 import socket
 import sys
 import time
 from datetime import datetime
 
-from fonction_cadre import fonction_cadre_cran
+from fonctions_cadre import *
 
 HOST = "127.0.0.1"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
@@ -41,7 +42,7 @@ longeur=transition["longeur"]
 hauteur=transition["hauteur"]
 position_cadre_haut= transition["position_cadre_haut"]
 position_cadre_bas= transition["position_cadre_bas"]
-
+fonction_cadre_chiffre_name=getattr(importlib.import_module("fonctions_cadre"), transition["fonction_cadre_chiffre_name"] )
 
 Liste_horloge=[]
 last_time = datetime.fromtimestamp(0)
@@ -77,7 +78,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     Liste_horloge=[]
                     s.sendall(array_bytes)
                     time.sleep(step[0])
-            Liste_horloge=fonction_cadre(fonction_cadre_cran,Liste_horloge,longeur,hauteur,position_cadre_haut,position_cadre_bas)
+            Liste_horloge=fonction_cadre(fonction_cadre_chiffre_name,Liste_horloge,longeur,hauteur,position_cadre_haut,position_cadre_bas)
             for element in heure_dizaine:
                 for position in element[0]:
                     Liste_horloge.append(((position[1]+heure_dizaine_delta_colonne, position[0]+heure_dizaine_delta_ligne),element[1][0],element[1][1],element[1][2],element[1][3]))
