@@ -1,8 +1,11 @@
 {
-    "init_position_chiffre": [1, 1, 1, 3, 1, 5, 1, 7], 
+    "init_position_chiffre": [1, 4, 1, 6, 1, 8, 1, 10],
     "fichier_chiffre_name": "./chiffres.json",
-    "fichier_cadre_name": "./cadre.json",
-    "fichier_transition_minute": "./polytech_transition.json",
-    "fichier_transition_heure": "./polytech_transition.json"
+    "fichier_transition_minute": "./polytech.json",
+    "fichier_transition_heure": "./polytech.json", 
+    "longeur": 16,
+    "hauteur":5,
+    "position_cadre_haut": [1,4],
+    "position_cadre_bas":[3,11]
 
 }

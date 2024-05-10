@@ -6,20 +6,25 @@ import sys
 import time
 from datetime import datetime
 
+from fonction_cadre import fonction_cadre_cran
+
 HOST = "127.0.0.1"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
 time.sleep(1)
 
 
 
+
 import json
+
+
+def fonction_cadre(fonction, Liste, l, h, ph, pb):
+    return fonction(Liste, l, h, ph, pb)
 
 with open('transition1.json') as transition:
     transition = json.load(transition)
 with open(transition["fichier_chiffre_name"]) as fichier_chiffre:
     chiffre = json.load(fichier_chiffre)
-with open(transition["fichier_cadre_name"]) as fichier_cadre:
-    cadre = json.load(fichier_cadre)
 with open(transition["fichier_transition_minute"]) as fichier_transition_minute:
     transition_minute = json.load(fichier_transition_minute)
 with open(transition["fichier_transition_heure"]) as fichier_transition_heure:
@@ -32,6 +37,11 @@ minute_dizaine_delta_ligne=transition["init_position_chiffre"][4]
 minute_dizaine_delta_colonne=transition["init_position_chiffre"][5]
 minute_unite_delta_ligne=transition["init_position_chiffre"][6]
 minute_unite_delta_colonne=transition["init_position_chiffre"][7]
+longeur=transition["longeur"]
+hauteur=transition["hauteur"]
+position_cadre_haut= transition["position_cadre_haut"]
+position_cadre_bas= transition["position_cadre_bas"]
+
 
 Liste_horloge=[]
 last_time = datetime.fromtimestamp(0)
@@ -67,6 +77,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     Liste_horloge=[]
                     s.sendall(array_bytes)
                     time.sleep(step[0])
+            Liste_horloge=fonction_cadre(fonction_cadre_cran,Liste_horloge,longeur,hauteur,position_cadre_haut,position_cadre_bas)
             for element in heure_dizaine:
                 for position in element[0]:
                     Liste_horloge.append(((position[1]+heure_dizaine_delta_colonne, position[0]+heure_dizaine_delta_ligne),element[1][0],element[1][1],element[1][2],element[1][3]))
@@ -79,9 +90,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             for element in minute_unite:
                 for position in element[0]:
                     Liste_horloge.append(((position[1]+minute_unite_delta_colonne, position[0]+minute_unite_delta_ligne),element[1][0],element[1][1],element[1][2],element[1][3]))
-            for element in cadre:
-                for position in element[0]:
-                    Liste_horloge.append(((position[1], position[0]),element[1][0],element[1][1],element[1][2],element[1][3]))
             array_bytes = pickle.dumps(Liste_horloge)
             Liste_horloge=[]
             s.sendall(array_bytes)

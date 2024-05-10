@@ -4,12 +4,12 @@ import socket
 import subprocess
 import sys
 import time
-from threads import MonThread
 from datetime import datetime
 
 import numpy as np
 import pygame
 from Aiguille import Aiguille
+from threads import MonThread
 
 from horloge import Horloge
 
