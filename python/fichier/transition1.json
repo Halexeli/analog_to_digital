@@ -1,7 +1,7 @@
 {
     "init_position_chiffre": [1, 4, 1, 6, 1, 8, 1, 10],
     "fichier_chiffre_name": "./chiffres.json",
-    "fichier_transition_minute": "./polytech.json",
+    "fichier_transition_minute": "./pacman.json",
     "fichier_transition_heure": "./polytech.json", 
     "longeur": 16,
     "hauteur":5,
