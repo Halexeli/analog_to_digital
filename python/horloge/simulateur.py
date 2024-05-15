@@ -11,6 +11,19 @@ Options:
   --version     Show version.
 """
 from docopt import docopt
+"""Simulateur d horloges.
+
+Usage: 
+  simulateur.py <hauteur> <largeur> <nbligne> <nbcolonne> <butee>
+  simulateur.py [-h | --help]
+  simulateur.py --version
+
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+"""
+from docopt import docopt
 import math
 import pickle
 import socket
@@ -27,6 +40,7 @@ from threads import MonThread
 from horloge import Horloge
 
 # On récupère les arguments passés à notre programme (hauteur, largeur, nbligne, nbcolonne)
+
 if __name__=='__main__':
     arguments = docopt(__doc__, version='Simulateur 1.0')
     hauteur=int(arguments['<hauteur>'])
@@ -37,9 +51,9 @@ if __name__=='__main__':
     HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
     PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
     # pygame setup
-    
-    
-    
+
+
+
     # On initialise pygame et on crée un écran de largeur et hauteur données en argument
     pygame.init()
     screen = pygame.display.set_mode((largeur, hauteur))
@@ -47,7 +61,7 @@ if __name__=='__main__':
     clock = pygame.time.Clock()
     running = True # on initialise une variable pour savoir si le programme est en cours d'exécution
     dt = 0 # on initialise un delta time
-    
+
     a=(largeur-20)/ nbcolonne #on calcule la largeur possible
     b=(hauteur-20)/nbligne # on calcule la hauteur possible d'une horloge
     if a>b:
@@ -55,7 +69,7 @@ if __name__=='__main__':
     else:
         lar=1 #inverse
     ray=min(a,b)*0.45 # on calcule le rayon de l'horloge
-    
+
     #pour la matrice d'horloges
     Liste_horloge=[] # on initialise une liste pour stocker les horloges
     for i in range(nbcolonne):
@@ -67,7 +81,7 @@ if __name__=='__main__':
                 horloge=Horloge((i*b + b/2 +10+(a-b)/2*nbcolonne,j*b + b/2 +10), ray) # on crée une horloge
             Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
         Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.
-    
+
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((HOST, PORT))
         s.listen(10)
@@ -94,7 +108,7 @@ if __name__=='__main__':
                 except:
                     # Gérer l'erreur de non-blocage
                     pass
-    
+
                 # on parcourt tous les événements qui ont eu lieu
                 # pygame.QUIT = l'utilisateur a cliqué sur X pour fermer la fenêtre
                 for event in pygame.event.get():
@@ -107,12 +121,12 @@ if __name__=='__main__':
                     for j in range(nbligne):
                         horloge=Liste_horloge[i][j] # on récupère l'horloge
                         horloge.dessiner(screen,couleur="blue")
-    
+
                 pygame.display.flip()
                 # limiter le framerate à 60fps
                 # dt = delta time in seconds since last frame, used for framerate-
                 # independent physics.
                 dt = clock.tick_busy_loop(60) / 1000 #nombre de secondes depuis le dernier appel de tick
-    
+
         
     pygame.quit()
