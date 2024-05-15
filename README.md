@@ -124,3 +124,12 @@ faire transition classes et améliorer le code
   <li> Rendre les choses plus propres</li>
   
 </ul>
+<h1>SEANCE 15/05</h1>
+<h3>OBJECTIFS</h3>
+<ul>
+  <li>Docopt: commencer</li>
+  <li>finir les classes pour l'envoi de données/li>
+  <li> slides pour semaine prochaine </li>
+  <li> faire une version butée </li>
+  
+</ul>
