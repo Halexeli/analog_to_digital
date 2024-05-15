@@ -1,4 +1,0 @@
-#attendre 10.5 #attendre 10.5 secondes
-#tourne [0,1] 90 1 #tourne l'horloge en position [0][1] de 90 degrees avec un pas de 1
-#tourne -t 90 1 #tourne toutes les horloges de 90 degrees avec un pas de 1
-#tourne -m [[[90,1][90,1][90,1]][[90,1][90,1][95,1]]] #tourne les horloges de 90 degrees avec un pas de 1, la derniere a 95°
