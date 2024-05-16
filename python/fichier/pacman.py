@@ -3,8 +3,6 @@ import sys
 
 col=int(sys.argv[1])
 ligne = int(sys.argv[2])
-with open('./polytech.json') as mon_fichier:
-    data = json.load(mon_fichier)
 
 def init(ligne,col):
     a=[]
@@ -84,7 +82,7 @@ def pacman(ligne,col):
     return(res)
     
 
-data=[init(ligne,col)]
+data=[[ligne,col],init(ligne,col)]
 for j in range(7):
     res=pacman(ligne,col)
     data.append(res[0])
