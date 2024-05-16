@@ -11,19 +11,6 @@ Options:
   --version     Show version.
 """
 from docopt import docopt
-"""Simulateur d horloges.
-
-Usage: 
-  simulateur.py <hauteur> <largeur> <nbligne> <nbcolonne> <butee>
-  simulateur.py [-h | --help]
-  simulateur.py --version
-
-
-Options:
-  -h --help     Show this screen.
-  --version     Show version.
-"""
-from docopt import docopt
 import math
 import pickle
 import socket
@@ -35,7 +22,6 @@ from datetime import datetime
 import numpy as np
 import pygame
 from Aiguille import Aiguille
-from threads import MonThread
 
 from horloge import Horloge
 
@@ -93,13 +79,13 @@ if __name__=='__main__':
                     data = conn.recv(4096)
                     if data:
                         # Si des données ont été reçues, les traiter
-                        print("ok")
+                        #print("ok")
                         datarecup=pickle.loads(data)
-                        print(datarecup)
+                        #print(datarecup)
                         for i in datarecup:
                                 pos,t1,t2,p1,p2=i
-                                print(t1)
-                                print(t2)
+                                #print(t1)
+                                #print(t2)
                                 colonne,ligne=pos
                                 (Liste_horloge[colonne][ligne]).set_aiguille(t1, t2)
                                 (Liste_horloge[colonne][ligne]).set_aig_tps(p1, p2)

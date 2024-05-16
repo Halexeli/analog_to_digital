@@ -8,6 +8,7 @@ import time
 from datetime import datetime
 
 from fonctions_cadre import *
+import json
 
 HOST = "127.0.0.1"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
@@ -16,7 +17,7 @@ time.sleep(1)
 
 
 
-import json
+
 
 
 def fonction_cadre(fonction, Liste, l, h, ph, pb):
