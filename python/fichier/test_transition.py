@@ -32,9 +32,7 @@ if __name__=='__main__':
             m=input()
             with open(m) as fichier_transition:
                 transition = json.load(fichier_transition)
-            Liste_horloge.append((transition[0][0],transition[0][1]))
-            print(transition[0][0],", \t",transition[0][1])
-            for step in transition[1:]:
+            for step in transition:
                 for element in step[1]:
                     for position in element[0]:
                         Liste_horloge.append(((position[0], position[1]),element[1][0],element[1][1],element[1][2],element[1][3]))
