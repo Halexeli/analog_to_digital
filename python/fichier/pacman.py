@@ -1,8 +1,8 @@
 import json
 import sys
 
-col=int(sys.argv[1])
-ligne = int(sys.argv[2])
+col=int(sys.argv[1]) #ligne
+ligne = int(sys.argv[2]) #colonne
 
 def init(ligne,col):
     a=[]
@@ -82,7 +82,7 @@ def pacman(ligne,col):
     return(res)
     
 
-data=[[ligne,col],init(ligne,col)]
+data=[init(ligne,col)]
 for j in range(7):
     res=pacman(ligne,col)
     data.append(res[0])

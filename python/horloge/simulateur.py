@@ -18,14 +18,10 @@ import subprocess
 import sys
 import time
 from datetime import datetime
-
 import numpy as np
 import pygame
 from Aiguille import Aiguille
-
 from horloge import Horloge
-
-# On récupère les arguments passés à notre programme (hauteur, largeur, nbligne, nbcolonne)
 
 def nb_horloge(largeur,hauteur,nbligne,nbcolonne):
     #pour la matrice d'horloges
@@ -46,11 +42,11 @@ def nb_horloge(largeur,hauteur,nbligne,nbcolonne):
             else:
                 horloge=Horloge((i*b + b/2 +10+(a-b)/2*nbcolonne,j*b + b/2 +10), ray) # on crée une horloge
             Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
-        Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.
-        
+        Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.    
     return(Liste_horloge)
 
 if __name__=='__main__':
+    # On récupère les arguments passés à notre programme (hauteur, largeur, nbligne, nbcolonne)
     arguments = docopt(__doc__, version='Simulateur 1.0')
     largeur=int(arguments['<largeur>'])
     hauteur=int(arguments['<hauteur>'])
@@ -60,7 +56,6 @@ if __name__=='__main__':
 
     HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
     PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
-    # pygame setup
 
     # On initialise pygame et on crée un écran de largeur et hauteur données en argument
     pygame.init()
@@ -80,17 +75,12 @@ if __name__=='__main__':
                     data = conn.recv(4096)
                     if data:
                         # Si des données ont été reçues, les traiter
-                        #print("ok")
                         datarecup=pickle.loads(data)
-                        #print(datarecup)
-                        for i in range(1,len(datarecup)):
+                        for i in range(len(datarecup)):
                                 pos,t1,t2,p1,p2=datarecup[i]
-                                #print(t1)
-                                #print(t2)
                                 colonne,ligne=pos
                                 (Liste_horloge[colonne][ligne]).set_aiguille(t1, t2)
                                 (Liste_horloge[colonne][ligne]).set_aig_tps(p1, p2)
-                                #print(Liste_horloge[colonne][ligne])
                         conn.sendall(b'1')
                 except:
                     # Gérer l'erreur de non-blocage
@@ -111,8 +101,6 @@ if __name__=='__main__':
 
                 pygame.display.flip()
                 # limiter le framerate à 60fps
-                # dt = delta time in seconds since last frame, used for framerate-
-                # independent physics.
                 dt = clock.tick_busy_loop(60) / 1000 #nombre de secondes depuis le dernier appel de tick
 
         
