@@ -1,0 +1,18 @@
+{
+    "nb_ligne":5,
+    "nb_colonne": 15,
+
+    "init_position_chiffre": [[1, 3],[ 1, 5],[ 1, 8],[ 1, 10]],
+    "fichier_chiffre_name": "./chiffres/chiffres_3_par_2.json",
+    "fonction_cadre_chiffre_name":"fonction_cadre_cran",
+    
+    "fichier_transition_name_heure": "./transitions/etoile_transition.json", 
+    "init_position_transition_heure":[[0, 0],[0, 5], [ 0, 10]],
+    "fonction_cadre_transition_heure_name":"fonction_cadre_ligne",
+
+    "fichier_transition_name_minute": "./transitions/etoile_transition.json",
+    "init_position_transition_minute":[[0, 0],[0, 5],[ 0, 10]],
+    "fonction_cadre_transition_minute_name":"fonction_cadre_ligne"
+
+
+}

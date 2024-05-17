@@ -1,0 +1,18 @@
+{
+    "nb_ligne":5,
+    "nb_colonne": 16,
+
+    "init_position_chiffre": [[1, 4],[ 1, 6],[ 1, 8],[ 1, 10]],
+    "fichier_chiffre_name": "./chiffres/chiffres_3_par_2.json",
+    "fonction_cadre_chiffre_name":"fonction_cadre_cran",
+    
+    "fichier_transition_name_heure": "./transitions/polytech_transition.json", 
+    "init_position_transition_heure":[[0, 0]],
+    "fonction_cadre_transition_heure_name":"fonction_cadre_ligne",
+
+    "fichier_transition_name_minute": "./transitions/polytech_transition.json",
+    "init_position_transition_minute":[[0, 0]],
+    "fonction_cadre_transition_minute_name":"fonction_cadre_ligne"
+
+
+}

@@ -1,7 +1,7 @@
 """Simulateur d horloges.
 
 Usage: 
-  simulateur.py <hauteur> <largeur> <nbcolonne> <nbligne> <butee>
+  simulateur.py <hauteur> <largeur> <nbligne> <nbcolonne> <butee>
   simulateur.py [-h | --help]
   simulateur.py --version
 
@@ -10,7 +10,6 @@ Options:
   -h --help     Show this screen.
   --version     Show version.
 """
-from docopt import docopt
 import math
 import pickle
 import socket
@@ -18,12 +17,14 @@ import subprocess
 import sys
 import time
 from datetime import datetime
+
 import numpy as np
 import pygame
-from Aiguille import Aiguille
-from horloge import Horloge
+from classes.Horloge import Horloge
+from docopt import docopt
 
-def nb_horloge(largeur,hauteur,nbligne,nbcolonne):
+
+def nb_horloge(largeur,hauteur,nbligne,nbcolonne, butee):
     #pour la matrice d'horloges
     a=(largeur-20)/ nbcolonne #on calcule la largeur possible
     b=(hauteur-20)/nbligne # on calcule la hauteur possible d'une horloge
@@ -34,13 +35,13 @@ def nb_horloge(largeur,hauteur,nbligne,nbcolonne):
     ray=min(a,b)*0.45 # on calcule le rayon de l'horloge
 
     Liste_horloge=[] # on initialise une liste pour stocker les horloges
-    for i in range(nbcolonne):
+    for i in range(nbligne):
         Liste_horloge2=[]  # on initialise une liste pour stocker les horloges pour faire la matrice
-        for j in range(nbligne): 
+        for j in range(nbcolonne): 
             if lar:
-                horloge=Horloge((i*a + a/2 +10,j*a + a/2 +10+(b-a)/2*nbligne), ray) # on crée une horloge centré avec le meme espace entre elles
+                horloge=Horloge((j*a + a/2 +10,i*a + a/2 +10+(b-a)/2*nbligne), ray, butee) # on crée une horloge centré avec le meme espace entre elles
             else:
-                horloge=Horloge((i*b + b/2 +10+(a-b)/2*nbcolonne,j*b + b/2 +10), ray) # on crée une horloge
+                horloge=Horloge((j*b + b/2 +10+(a-b)/2*nbcolonne,i*b + b/2 +10), ray, butee) # on crée une horloge
             Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
         Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.    
     return(Liste_horloge)
@@ -52,7 +53,8 @@ if __name__=='__main__':
     hauteur=int(arguments['<hauteur>'])
     nbcolonne=int(arguments['<nbcolonne>'])
     nbligne=int(arguments['<nbligne>'])
-    Liste_horloge=nb_horloge(largeur,hauteur,nbligne,nbcolonne)
+    butee=int(arguments['<butee>'])
+    Liste_horloge=nb_horloge(largeur,hauteur,nbligne,nbcolonne, butee)
 
     HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
     PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
@@ -76,11 +78,12 @@ if __name__=='__main__':
                     if data:
                         # Si des données ont été reçues, les traiter
                         datarecup=pickle.loads(data)
-                        for i in range(len(datarecup)):
-                                pos,t1,t2,p1,p2=datarecup[i]
-                                colonne,ligne=pos
-                                (Liste_horloge[colonne][ligne]).set_aiguille(t1, t2)
-                                (Liste_horloge[colonne][ligne]).set_aig_tps(p1, p2)
+                        for i in datarecup:
+                                pos,t1,t2,p1,p2,s1,s2=i
+                                ligne,colonne=pos
+                                (Liste_horloge[ligne][colonne]).set_aig_sens(s1, s2)
+                                (Liste_horloge[ligne][colonne]).set_aiguille(t1, t2)
+                                (Liste_horloge[ligne][colonne]).set_aig_tps(p1, p2)
                         conn.sendall(b'1')
                 except:
                     # Gérer l'erreur de non-blocage
@@ -94,8 +97,8 @@ if __name__=='__main__':
                 
                 # fill l'ecran avec une couleur pour effacer les frames précédents
                 screen.fill("white")
-                for i in range(nbcolonne):
-                    for j in range(nbligne):
+                for i in range(nbligne):
+                    for j in range(nbcolonne):
                         horloge=Liste_horloge[i][j] # on récupère l'horloge
                         horloge.dessiner(screen,couleur="blue")
 

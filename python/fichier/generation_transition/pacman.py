@@ -1,8 +1,8 @@
 import json
 import sys
 
-col=int(sys.argv[1]) #ligne
-ligne = int(sys.argv[2]) #colonne
+ligne=int(sys.argv[1]) 
+col = int(sys.argv[2]) 
 
 def init(ligne,col):
     a=[]
@@ -10,22 +10,22 @@ def init(ligne,col):
     e=[]
     for i in range(ligne):
         for j in range(col):
-            if(j==0):
+            if(i==0):
                 a.append([i,j])
-            elif(j==col-1):
+            elif(i==col-1):
                 c.append([i,j])
             else:
                 e.append([i,j])
     res=[3,[
     [
         a,
-        [0, 0, 0.008, -0.008]
+        [0, 0, 0.007, 0.007, 1, -1]
     ],[
         c,
-        [180, 180, 0.008, -0.008]
+        [180, 180, 0.007, 0.007, 1, -1]
     ],[
         e,
-        [135, 315, 0.008, -0.008]
+        [135, 315, 0.007, 0.007, 1, -1]
     ]]
     ]
     return(res)
@@ -35,48 +35,48 @@ def pacman(ligne,col):
     b=[]
     c=[]
     d=[]
-    for j in range(ligne):
+    for j in range(col):
         if j%2==0:
-            a.append([j,0])
-            c.append([j,col-1])
+            a.append([0,j])
+            c.append([ligne-1,j])
         else:
-            b.append([j,0])
-            d.append([j,col-1])
+            b.append([0,j])
+            d.append([ligne-1,j])
     res=[[
         0.25,
         [[
             a,
-            [45, 315, 0.004, -0.004]
+            [45, 315, 0.004, 0.004, 1, -1]
         ],[
             d,
-            [225,135,0.004,-0.004]
+            [225,135,0.004,0.004, 1, -1]
         ]]
     ],[
         0.25,
         [[
             a,
-            [0, 0, -0.004, 0.004]
+            [0, 0, 0.004, 0.004, -1, 1]
         ],[
             d,
-            [180,180,-0.004,0.004]
+            [180,180,0.004,0.004, -1, 1]
         ]]
     ],[
         0.25,
         [[
             b,
-            [45, 315, 0.004, -0.004]
+            [45, 315, 0.004, 0.004, 1, -1]
         ],[
             c,
-            [225,135,0.004,-0.004]
+            [225,135,0.004,0.004, 1, -1]
         ]]
     ],[
         0.25,
         [[
             b,
-            [0, 0, -0.004, 0.004]
+            [0, 0, 0.004, 0.004, -1, 1]
         ],[
             c,
-            [180,180,-0.004,0.004]
+            [180,180,0.004,0.004, -1, 1]
         ]]
     ]]
     return(res)
@@ -90,8 +90,12 @@ for j in range(7):
     data.append(res[2])
     data.append(res[3])
 
+data_envoi={
+    "taille": [ligne, col],
+    "transition": data
+}
 
 
 
 with open('./pacman.json', "w") as f:
-    json.dump(data, f)
+    json.dump(data_envoi, f)
