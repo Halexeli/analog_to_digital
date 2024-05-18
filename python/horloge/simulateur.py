@@ -44,7 +44,7 @@ def nb_horloge(largeur,hauteur,nbligne,nbcolonne, butee):
                 horloge=Horloge((j*b + b/2 +10+(a-b)/2*nbcolonne,i*b + b/2 +10), ray, butee) # on crée une horloge
             Liste_horloge2.append(horloge) # on ajoute l'horloge à la liste
         Liste_horloge.append(Liste_horloge2) # on ajoute à j=0 la liste.    
-    return(Liste_horloge)
+    return(Liste_horloge, nbligne, nbcolonne)
 
 if __name__=='__main__':
     # On récupère les arguments passés à notre programme (hauteur, largeur, nbligne, nbcolonne)
@@ -54,7 +54,7 @@ if __name__=='__main__':
     nbcolonne=int(arguments['<nbcolonne>'])
     nbligne=int(arguments['<nbligne>'])
     butee=int(arguments['<butee>'])
-    Liste_horloge=nb_horloge(largeur,hauteur,nbligne,nbcolonne, butee)
+    Liste_horloge,nbligne, nbcolonne=nb_horloge(largeur,hauteur,nbligne,nbcolonne, butee)
 
     HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
     PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
@@ -78,12 +78,15 @@ if __name__=='__main__':
                     if data:
                         # Si des données ont été reçues, les traiter
                         datarecup=pickle.loads(data)
-                        for i in datarecup:
-                                pos,t1,t2,p1,p2,s1,s2=i
-                                ligne,colonne=pos
-                                (Liste_horloge[ligne][colonne]).set_aig_sens(s1, s2)
-                                (Liste_horloge[ligne][colonne]).set_aiguille(t1, t2)
-                                (Liste_horloge[ligne][colonne]).set_aig_tps(p1, p2)
+                        if(type(datarecup)==tuple):
+                            Liste_horloge,nbligne, nbcolonne=nb_horloge(largeur,hauteur,datarecup[0], datarecup[1], datarecup[2])
+                        else:
+                            for i in datarecup:
+                                    pos,t1,t2,p1,p2,s1,s2=i
+                                    ligne,colonne=pos
+                                    (Liste_horloge[ligne][colonne]).set_aig_sens(s1, s2)
+                                    (Liste_horloge[ligne][colonne]).set_aiguille(t1, t2)
+                                    (Liste_horloge[ligne][colonne]).set_aig_tps(p1, p2)
                         conn.sendall(b'1')
                 except:
                     # Gérer l'erreur de non-blocage

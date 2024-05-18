@@ -2,6 +2,7 @@ import json
 
 from classes.Chiffres import Chiffres
 from classes.Transition import Transition
+from fonctions.fonctions import *
 
 
 class Tableau():
@@ -22,4 +23,8 @@ class Tableau():
         self.Matrice_horloge=self.transition_minute.execute_transition(s,self.Matrice_horloge, self.butee, self.nb_ligne, self.nb_colonne)
     def execute_chiffres(self, s):
         self.Matrice_horloge=self.chiffres.execute_chiffres(s,self.Matrice_horloge, self.butee, self.nb_ligne, self.nb_colonne)
+    def envoi_nb_horloge(self, s):
+        envoi((self.nb_ligne, self.nb_colonne, self.butee), s)
+
+        
 

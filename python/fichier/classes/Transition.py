@@ -1,4 +1,5 @@
 import json
+import re
 import time
 
 from classes.Cadre import Cadre
@@ -7,6 +8,9 @@ from fonctions.fonctions import *
 
 class Transition():
     def __init__(self, data, fichier, cadre_fonction):
+        xp = xp = r"\.json$"
+        occurs = re.compile(xp).search(fichier)
+        print(occurs)
         with open(fichier) as recup:
             recup= json.load(recup)
         self.transition=recup["transition"]
