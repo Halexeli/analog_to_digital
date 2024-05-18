@@ -1,3 +1,4 @@
+import importlib
 import json
 import re
 import time
@@ -7,10 +8,10 @@ from fonctions.fonctions import *
 
 
 class Transition():
-    def __init__(self, data, fichier, cadre_fonction):
-        xp = xp = r"\.json$"
-        occurs = re.compile(xp).search(fichier)
-        print(occurs)
+    def __init__(self, data, fichier, cadre_fonction, ligne, colonne):
+        if re.compile(r"\.json$").search(fichier) is None:
+            fonction=getattr(importlib.import_module("generation_transition."+fichier), fichier)
+            fichier=fonction(ligne, colonne)
         with open(fichier) as recup:
             recup= json.load(recup)
         self.transition=recup["transition"]
@@ -34,7 +35,7 @@ class Transition():
                 for position in element[0]:
                     for motif in self.transition_position:
                         sens=fonction_sens((position[0]+motif[0][0], position[1]+motif[0][1]), (element[1][0],element[1][1]), (element[1][4],element[1][5]), Matrice_horloge, butee)
-                        Liste_horloge.append(((position[0]+motif[0][0], position[1]+motif[0][1]),element[1][0],element[1][1],element[1][2],element[1][3], sens[0],sens[1]))
+                        Liste_horloge.append(((position[0]+motif[0][0], position[1]+motif[0][1]),element[1][0],element[1][1],fonction_adaptation_au_tick(element[1][2]),fonction_adaptation_au_tick(element[1][3]), sens[0],sens[1]))
                         Matrice_horloge[position[0]+motif[0][0]][position[1]+motif[0][1]][0]=element[1][0]
                         Matrice_horloge[position[0]+motif[0][0]][position[1]+motif[0][1]][1]=element[1][1]
             if self.cadre !=0:

@@ -2,11 +2,11 @@ import json
 import sys
 
 
-def pacman(ligne,col):
+def fonction_pacman(ligne,col):
     data=[init(ligne,col)]
     j=0
     for j in range(7):
-        res=fonction_pacman(ligne,col)
+        res=pacman(ligne,col)
         data.append(res[0])
         data.append(res[1])
         data.append(res[2])
@@ -42,7 +42,7 @@ def init(ligne,col):
     ]
     return(res)
 
-def fonction_pacman(ligne,col):
+def pacman(ligne,col):
     a=[]
     b=[]
     c=[]

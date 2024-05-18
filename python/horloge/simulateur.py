@@ -10,15 +10,10 @@ Options:
   -h --help     Show this screen.
   --version     Show version.
 """
-import math
+
 import pickle
 import socket
-import subprocess
-import sys
-import time
-from datetime import datetime
 
-import numpy as np
 import pygame
 from classes.Horloge import Horloge
 from docopt import docopt

@@ -12,8 +12,8 @@ class Tableau():
         self.nb_ligne=data["nb_ligne"]
         self.nb_colonne=data["nb_colonne"]
         self.chiffres=Chiffres(data["init_position_chiffre"], data["fichier_chiffre_name"], data["fonction_cadre_chiffre_name"])
-        self.transition_heure=Transition(data["init_position_transition_heure"], data["fichier_transition_name_heure"],  data["fonction_cadre_transition_heure_name"])
-        self.transition_minute=Transition(data["init_position_transition_minute"], data["fichier_transition_name_minute"], data["fonction_cadre_transition_minute_name"])
+        self.transition_heure=Transition(data["init_position_transition_heure"], data["fichier_transition_name_heure"],  data["fonction_cadre_transition_heure_name"], self.nb_ligne, self.nb_colonne)
+        self.transition_minute=Transition(data["init_position_transition_minute"], data["fichier_transition_name_minute"], data["fonction_cadre_transition_minute_name"], self.nb_ligne, self.nb_colonne)
         self.Matrice_horloge=[[[0, 0] for _ in range(data["nb_colonne"])] for _ in range(data["nb_ligne"])]
         self.butee=butee
 
