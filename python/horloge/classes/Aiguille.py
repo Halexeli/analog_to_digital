@@ -32,7 +32,7 @@ class Aiguille():
     def dessiner_aiguille(self, pos, screen,couleur):
         eps=self.goal_theta-self.current_theta #pour tester notre condition d'arrêt
         next_tps=self.tps*self.sens # pour que l'arrêt soit fluide 
-        if abs(eps)>=abs(1/(self.tps*62.5*self.sens)):
+        if abs(eps)>=abs(1/(self.tps*62.5)):
             self.current_theta+=1/(self.tps*62.5*self.sens)
             self.current_theta=self.current_theta%360 #l'aiguille avance, on avance current_theta
         elif abs(eps)!=0:

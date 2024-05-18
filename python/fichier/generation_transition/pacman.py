@@ -10,22 +10,17 @@ def init(ligne,col):
     e=[]
     for i in range(ligne):
         for j in range(col):
-            if(i==0):
+            if(i%2==0):
                 a.append([i,j])
-            elif(i==col-1):
-                c.append([i,j])
             else:
-                e.append([i,j])
-    res=[3,[
+                c.append([i,j])
+    res=[3.5,[
     [
         a,
         [0, 0, 0.007, 0.007, 1, -1]
     ],[
         c,
-        [180, 180, 0.007, 0.007, 1, -1]
-    ],[
-        e,
-        [135, 315, 0.007, 0.007, 1, -1]
+        [180, 180, 0.008, 0.008, 1, -1]
     ]]
     ]
     return(res)
@@ -35,13 +30,18 @@ def pacman(ligne,col):
     b=[]
     c=[]
     d=[]
-    for j in range(col):
-        if j%2==0:
-            a.append([0,j])
-            c.append([ligne-1,j])
-        else:
-            b.append([0,j])
-            d.append([ligne-1,j])
+    for i in range(ligne):
+        for j in range(col):
+            if j%2==0:
+                if i%2==0:
+                    a.append([i,j])
+                else:
+                    b.append([i,j])
+            else:
+                if i%2==0:
+                    c.append([i,j])
+                else:
+                    d.append([i,j])
     res=[[
         0.25,
         [[
@@ -61,21 +61,21 @@ def pacman(ligne,col):
             [180,180,0.004,0.004, -1, 1]
         ]]
     ],[
-        0.25,
+        0.5,
         [[
-            b,
+            c,
             [45, 315, 0.004, 0.004, 1, -1]
         ],[
-            c,
+            b,
             [225,135,0.004,0.004, 1, -1]
         ]]
     ],[
-        0.25,
+        0.5,
         [[
-            b,
+            c,
             [0, 0, 0.004, 0.004, -1, 1]
         ],[
-            c,
+            b,
             [180,180,0.004,0.004, -1, 1]
         ]]
     ]]
@@ -97,5 +97,5 @@ data_envoi={
 
 
 
-with open('./pacman.json', "w") as f:
+with open('./pacman_transition.json', "w") as f:
     json.dump(data_envoi, f)
