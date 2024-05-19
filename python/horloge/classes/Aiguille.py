@@ -51,47 +51,54 @@ class Aiguille():
         pygame.draw.line(screen, self.__couleur, pos, pos1, 5 )
         self.tps=abs(next_tps)
 
+    '''
+    Méthode set_aiguille2 :
+
+    Permet de définir l'angle de l'aiguille
+    - theta : angle de l'aiguille
+    - butee : butee de l'aiguille
+    '''
     def set_aiguille2(self,theta,butee):
-        if(butee==1):
-            if (self.sens==1):
-                if(self.__butee_flag==1):
+        if(butee==1): #si il y a une butee
+            if (self.sens==1): #si le sens est positif
+                if(self.__butee_flag==1): #si on est sur la butee
                     self.goal_theta=0
                     self.__butee_flag=1
-                else:
-                    if(self.__current_theta%360< theta%360):
+                else: 
+                    if(self.__current_theta%360< theta%360):#si l'angle actuel est inferieur a l'angle but
                         self.goal_theta=theta%360
                         self.__butee_flag=0
-                    elif(self.__current_theta%360== theta%360):
+                    elif(self.__current_theta%360== theta%360):#si l'angle actuel est egal a l'angle but
                         if(theta%360==0):
                             self.goal_theta=theta%360
                             self.__butee_flag=1
                         else:
                             self.goal_theta=theta%360
-                    else:
+                    else:#si l'angle actuel est superieur a l'angle but
                         self.goal_theta=0
                         self.__butee_flag=1
-            else:
-                if(self.__butee_flag==-1):
+            else: #si le sens est negatif
+                if(self.__butee_flag==-1): #si on est sur la butee
                     self.goal_theta=0
                     self.__butee_flag=-1
                 else:
-                    if(self.__current_theta%360>theta%360):
+                    if(self.__current_theta%360>theta%360): #si l'angle actuel est superieur a l'angle but
                         if(theta==0):
                             self.goal_theta=0
                             self.__butee_flag=-1
                         else:
                             self.goal_theta=theta%360
                             self.__butee_flag=0
-                    elif(self.__current_theta== theta%360):
+                    elif(self.__current_theta== theta%360): #si l'angle actuel est egal a l'angle but
                         if(theta%360==0):
                             self.goal_theta=theta%360
                             self.__butee_flag=-1
                         else:
                             self.goal_theta=theta%360
-                    else:
+                    else: #si l'angle actuel est inferieur a l'angle but
                         self.goal_theta=0
                         self.__butee_flag=-1
-        else:
+        else: #si il n'y a pas de butee
             self.goal_theta=theta%360
 
     def __test_dessiner(self):
@@ -146,6 +153,10 @@ class Aiguille():
         pygame.draw.line(screen, couleur, pos, pos1, 5 )
 
 
+    '''
+    Méthode dessiner_aiguille :
+    Permet de dessiner l'aiguille 
+    '''
     def dessiner_aiguille(self, pos, screen,couleur):
         self.__test_dessiner()
         pos1=(pos[0]+self.__taille*math.cos(2*math.pi/360*self.__current_theta),pos[1]+ self.__taille*math.sin(2*math.pi/360*self.__current_theta))

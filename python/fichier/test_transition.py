@@ -49,8 +49,8 @@ if __name__=='__main__':
         input_thread.start()
         while(1):
             if not name_queue.empty():
-                name = input_thread.name  # Get the name from the thread's name attribute
-                name = name_queue.get()  # Reset the event for future use
+                name = input_thread.name  #on récupère le nom du fichier à partir de la queue
+                name = name_queue.get()  # on reset la queue pour la prochaine fois
                 tab=Tableau("./parametres/"+name, butee)
                 last_time = datetime.fromtimestamp(0)
                 tab.envoi_nb_horloge(s)

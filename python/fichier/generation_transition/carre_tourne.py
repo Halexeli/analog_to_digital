@@ -1,7 +1,9 @@
 import json
 import sys
 
-
+'''
+cette fonction génère un fichier json de transition pour les carrés tournant
+'''
 def carre_tourne(ligne, col):
     a=[]
     b=[]

@@ -2,6 +2,9 @@ import json
 import sys
 
 
+'''
+cette fonction génère les instructions de la transition pac-man
+'''
 def pacman(ligne,col):
     data=[init(ligne,col)]
     j=0
@@ -21,6 +24,9 @@ def pacman(ligne,col):
         json.dump(data_envoi, f)
     return "./transitions/pacman_transition.json"
 
+'''
+fonction qui initialise la transition
+'''
 def init(ligne,col):
     a=[]
     c=[]
@@ -41,7 +47,9 @@ def init(ligne,col):
     ]]
     ]
     return(res)
-
+'''
+fonction qui génère les instructions de la transition
+'''
 def fonction_pacman(ligne,col):
     a=[]
     b=[]
