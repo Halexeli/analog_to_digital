@@ -36,20 +36,6 @@ class Aiguille():
     - pos : position de l'aiguille
     - screen : écran de la simulation
     """
-    def dessiner_aiguille2(self, pos, screen):
-        eps=(self.goal_theta-self.__current_theta)%360 #pour tester notre condition d'arrêt
-        next_tps=self.tps*self.sens # pour que l'arrêt soit fluide 
-        if abs(eps)>=abs(1/(self.tps*vitesse*self.sens)):
-            self.__current_theta+=1/(self.tps*vitesse*self.sens)
-            self.__current_theta=self.__current_theta%360 #l'aiguille avance, on avance current_theta
-        elif abs(eps)!=0:
-            next_tps=self.tps*self.sens #pour que l'aiguile s'arrête exactement a la bonne position
-            self.tps=abs(1/(eps*vitesse))
-            self.__current_theta+=1/(self.tps*vitesse)
-            self.__current_theta=self.__current_theta%360 #on avance current_theta
-        pos1=(pos[0]+self.__taille*math.cos(2*math.pi/360*self.__current_theta),pos[1]+ self.__taille*math.sin(2*math.pi/360*self.__current_theta))
-        pygame.draw.line(screen, self.__couleur, pos, pos1, 5 )
-        self.tps=abs(next_tps)
 
     '''
     Méthode set_aiguille2 :
@@ -58,48 +44,9 @@ class Aiguille():
     - theta : angle de l'aiguille
     - butee : butee de l'aiguille
     '''
-    def set_aiguille2(self,theta,butee):
-        if(butee==1): #si il y a une butee
-            if (self.sens==1): #si le sens est positif
-                if(self.__butee_flag==1): #si on est sur la butee
-                    self.goal_theta=0
-                    self.__butee_flag=1
-                else: 
-                    if(self.__current_theta%360< theta%360):#si l'angle actuel est inferieur a l'angle but
-                        self.goal_theta=theta%360
-                        self.__butee_flag=0
-                    elif(self.__current_theta%360== theta%360):#si l'angle actuel est egal a l'angle but
-                        if(theta%360==0):
-                            self.goal_theta=theta%360
-                            self.__butee_flag=1
-                        else:
-                            self.goal_theta=theta%360
-                    else:#si l'angle actuel est superieur a l'angle but
-                        self.goal_theta=0
-                        self.__butee_flag=1
-            else: #si le sens est negatif
-                if(self.__butee_flag==-1): #si on est sur la butee
-                    self.goal_theta=0
-                    self.__butee_flag=-1
-                else:
-                    if(self.__current_theta%360>theta%360): #si l'angle actuel est superieur a l'angle but
-                        if(theta==0):
-                            self.goal_theta=0
-                            self.__butee_flag=-1
-                        else:
-                            self.goal_theta=theta%360
-                            self.__butee_flag=0
-                    elif(self.__current_theta== theta%360): #si l'angle actuel est egal a l'angle but
-                        if(theta%360==0):
-                            self.goal_theta=theta%360
-                            self.__butee_flag=-1
-                        else:
-                            self.goal_theta=theta%360
-                    else: #si l'angle actuel est inferieur a l'angle but
-                        self.goal_theta=0
-                        self.__butee_flag=-1
-        else: #si il n'y a pas de butee
-            self.goal_theta=theta%360
+
+
+        
 
     def __test_dessiner(self):
         if(self.__current_theta%360!=self.goal_theta%360 and self.tps!=0):
