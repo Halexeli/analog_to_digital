@@ -32,7 +32,18 @@ Pour visualiser ce qu'on veut, nous avons deux possibilités (dans un autre term
 
 #### Pour lancer fichier.py :
 
-///A COMPLETER !!!
+Pour lancer la fonction principale, il faut tout d'abord se placer dans le dossier fichier, et lancer le fichier.py avec les arguments suivants:
+<ul>
+<li> < nom du fichier >  < butée > : ces arguments représentent respectivement le nom du fichier du dossier paramètres que l'on souhaite lancer et si l'on souhaite (1) ou non (0) activer la fonction permettant de changer le sens des aiguilles pour qu'elles évitent les butées</li>
+<li>--help ou -h : permet de voir ce qu'il faut mettre comme arguments</li>
+<li>--version : montre la version du simulateur</li>
+<li>Notez qu'il est essentiel de faire correspondre le nombre de lignes et de colonnes du simulateur avec ceux indiqués dans le fichier de paramètres que l'on souhaite lancer</li>
+</ul>
+
+#### Pour lancer test_transition.py :
+
+Les consignes sont les mêmes que pour lancer fichier.py, à noter que les paramètres du simulateur (nombre de lignes, nombre de colonnes et butée) seront écrasés et remplacés automatiquement par ceux indiqués lors du lancement de test_transition.py.
+Notez qu'avec test_transition.py, activer la fonction pour éviter les butées active automatiquement les butées sur le simulateur et inversement.
 
 ## Aide :
 
