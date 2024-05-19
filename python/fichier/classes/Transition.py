@@ -6,6 +6,14 @@ import time
 from classes.Cadre import Cadre
 from fonctions.fonctions import *
 
+'''
+cette classe se compose:
+    -du fichier json contenant les instructions de la transition
+    -la taille de la transition (nbligne, nbcolonne)
+    -les positions des horloges utilisées pour la transition 
+    (c'est-à-dire l'horloge la plus haute et la plus à gauche du motif 
+    et l'horloge la plus basse et la plus à droite du motif)
+'''
 
 class Transition():
     def __init__(self, data, fichier, cadre_fonction, ligne, colonne):

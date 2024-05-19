@@ -4,8 +4,22 @@ from classes.Chiffres import Chiffres
 from classes.Transition import Transition
 from fonctions.fonctions import *
 
+'''
+cette classe se compose:
+    -du nombre de lignes et de colonnes de la matrice des horloges
+    -de l'objet Chiffres
+    -de l'objet Transition pour les heures
+    -de l'objet Transition pour les minutes
+    -de la matrice des horloges (comprenant les angles du dernier affichage des aiguilles de chaque horloge)
+    -de la butée de la transition (si elle existe)
+'''
 
 class Tableau():
+    '''
+    Constructeur de la classe Tableau
+    fichier : le fichier json du tableau
+    butee : la butée de la transition
+    '''
     def __init__(self, fichier, butee):
         with open(fichier) as data:
             data = json.load(data)
