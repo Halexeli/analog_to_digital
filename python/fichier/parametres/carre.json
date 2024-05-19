@@ -1,9 +1,9 @@
 {
-    "nb_ligne":3,
-    "nb_colonne": 8,
+    "nb_ligne":5,
+    "nb_colonne": 16,
 
-    "init_position_chiffre": [[0, 0],[ 0, 2],[ 0, 4],[ 0, 6]],
-    "fichier_chiffre_name": "./chiffres/chiffres_3_par_2.json",
+    "init_position_chiffre": [[0, 2],[ 0, 5],[ 0, 8],[ 0, 11]],
+    "fichier_chiffre_name": "./chiffres/chiffres_5_par_3.json",
     "fonction_cadre_chiffre_name":"fonction_cadre_cran",
     
     "fichier_transition_name_heure": "carre_tourne", 

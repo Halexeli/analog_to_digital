@@ -98,7 +98,7 @@ if __name__=='__main__':
                 for i in range(nbligne):
                     for j in range(nbcolonne):
                         horloge=Liste_horloge[i][j] # on récupère l'horloge
-                        horloge.dessiner(screen,couleur="blue")
+                        horloge.dessiner(screen)
 
                 pygame.display.flip()
                 # limiter le framerate à 60fps

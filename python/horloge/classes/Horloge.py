@@ -11,10 +11,10 @@ class Horloge():
         - rayon : rayon de l'horloge
         - width : largeur de l'horloge
     """
-    def __init__(self, pos_0=(0,0), rayon=100, butee=0,width=3):
+    def __init__(self, pos_0=(0,0), rayon=100, butee=0,width=3,couleur=("red","blue")):
         self.__pos_0=pos_0
-        self.__aiguille_1=Aiguille(rayon*0.8)
-        self.__aiguille_2=Aiguille(rayon*0.8)
+        self.__aiguille_1=Aiguille(rayon*0.8,couleur[0])
+        self.__aiguille_2=Aiguille(rayon*0.8,couleur[1])
         self.__rayon=rayon
         self.__width=width
         self.__butee=butee
@@ -24,13 +24,17 @@ class Horloge():
     - theta_1 : angle but de la première aiguille
     - theta_2 : angle but de la deuxième aiguille
     """
-    def set_aiguille(self,theta_1,theta_2):
+    def set_aiguille2(self,theta_1,theta_2):
         if(self.__butee==1):
-            self.__aiguille_1.set_aiguille(theta_1,1)
-            self.__aiguille_2.set_aiguille(theta_2,1)
+            self.__aiguille_1.set_aiguille2(theta_1,1)
+            self.__aiguille_2.set_aiguille2(theta_2,1)
         else:
-            self.__aiguille_1.set_aiguille(theta_1,0)
-            self.__aiguille_2.set_aiguille(theta_2,0)
+            self.__aiguille_1.set_aiguille2(theta_1,0)
+            self.__aiguille_2.set_aiguille2(theta_2,0)
+    
+    def set_aiguille(self,theta_1,theta_2):
+        self.__aiguille_1.set_aiguille(theta_1)
+        self.__aiguille_2.set_aiguille(theta_2)
 
     """
     Méthode set_aig_tps :
@@ -51,8 +55,16 @@ class Horloge():
     Permet de dessiner l'horloge
     - screen : écran de la simulation
     """
-
-    def dessiner(self, screen,couleur):
+    def dessiner(self, screen):
         pygame.draw.circle(screen, "black", self.__pos_0, self.__rayon,self.__width)
-        self.__aiguille_1.dessiner_aiguille(self.__pos_0,screen,couleur)
-        self.__aiguille_2.dessiner_aiguille(self.__pos_0,screen,couleur)
+        if(self.__butee):
+            self.__aiguille_1.dessiner_aiguille_butee(self.__pos_0,screen,"red")
+            self.__aiguille_2.dessiner_aiguille_butee(self.__pos_0,screen,"blue")
+        else:
+            self.__aiguille_1.dessiner_aiguille(self.__pos_0,screen,"red")
+            self.__aiguille_2.dessiner_aiguille(self.__pos_0,screen,"blue")
+            
+    def dessiner2(self, screen):
+        pygame.draw.circle(screen, "black", self.__pos_0, self.__rayon,self.__width)
+        self.__aiguille_1.dessiner_aiguille2(self.__pos_0,screen)
+        self.__aiguille_2.dessiner_aiguille2(self.__pos_0,screen)
