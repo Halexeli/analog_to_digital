@@ -25,7 +25,8 @@ from docopt import docopt
 def get_name():
     while(1):
         name = input("Nom de fichier? ")
-        name_queue.put(name) 
+        butee = input("butee? ")
+        name_queue.put([name,int(butee)]) 
 
 if __name__=='__main__':
     arguments = docopt(__doc__, version='Simulateur 1.0')
@@ -49,9 +50,9 @@ if __name__=='__main__':
         input_thread.start()
         while(1):
             if not name_queue.empty():
-                name = input_thread.name  #on récupère le nom du fichier à partir de la queue
-                name = name_queue.get()  # on reset la queue pour la prochaine fois
-                tab=Tableau("./parametres/"+name, butee)
+                name = input_thread.name  # Get the name from the thread's name attribute
+                name = name_queue.get()  # Reset the event for future use
+                tab=Tableau("./parametres/"+name[0], name[1])
                 last_time = datetime.fromtimestamp(0)
                 tab.envoi_nb_horloge(s)
             current_time = datetime.now()
