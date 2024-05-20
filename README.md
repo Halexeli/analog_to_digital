@@ -50,7 +50,7 @@ Notez qu'avec test_transition.py, activer la fonction pour éviter les butées a
 Les fichiers qu'on peut modifier sont :
 <ul>
   <li>tout d'abord dans le dossiers parametres, il y a les paramètres globaux (on peut ajouter des lignes ou colonnes, changer les transitions, les fonctions cadres, modifier où apparaissent les chiffres ...)</li>
-  <li>dans le dossier transitions, on peut ajouter ou modifier une transition (c'est aussi le cas dans generation_transition, il faut par contre supprimer le fichier correspondant dans le dossier correspondant pour que la fonction soit appelée)</li>
+  <li>dans le dossier transitions, on peut ajouter ou modifier une transition (c'est aussi le cas dans generation_transition, il faut par contre supprimer le fichier correspondant dans le dossier transitions pour que la fonction soit appelée)</li>
   <li>dans le dossier chiffre, on peut modifier, ajouter des chiffres dans différents formats</li>
   <li>dans le dossier fonctions, dans le fichier fonctions_cadre.py, on peut modifier ou ajouter les fonctions qui génèrent les cadres</li>
 </ul>
