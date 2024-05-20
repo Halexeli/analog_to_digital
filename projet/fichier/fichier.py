@@ -35,6 +35,9 @@ if __name__=='__main__':
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
         s.setblocking(0)
+        current_time = datetime.now()
+        tab.chiffres.set_heure(current_time) #on met à jour l'heure
+        tab.execute_chiffres(s)#on execute les chiffres
         while(1): 
             current_time = datetime.now()
             if(current_time.strftime("%H:%M")!=tab.chiffres.current_time.strftime("%H:%M")): #si l'heure a changé
