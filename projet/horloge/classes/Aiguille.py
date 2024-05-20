@@ -38,7 +38,7 @@ class Aiguille():
     """
 
     '''
-    Méthode set_aiguille2 :
+    Méthode set_aiguille_butee :
 
     Permet de définir l'angle de l'aiguille
     - theta : angle de l'aiguille
@@ -81,7 +81,7 @@ class Aiguille():
                     self.__current_theta=next_pos%360
 
 
-    def dessiner_aiguille_butee(self, pos, screen,couleur):
+    def dessiner_aiguille_butee(self, pos, screen):
         if(self.tps!=0):
             next_pos=(self.__current_theta%360+(1/(self.tps*vitesse*self.sens))) #on calcule la prochaine position
             if(self.__current_theta!=0): #pas de butee atteint
@@ -97,17 +97,17 @@ class Aiguille():
                     else:
                         self.__test_dessiner()
         pos1=(pos[0]+self.__taille*math.cos(2*math.pi/360*self.__current_theta),pos[1]+ self.__taille*math.sin(2*math.pi/360*self.__current_theta))
-        pygame.draw.line(screen, couleur, pos, pos1, 5 )
+        pygame.draw.line(screen, self.__couleur, pos, pos1, 5 )
 
 
     '''
     Méthode dessiner_aiguille :
     Permet de dessiner l'aiguille 
     '''
-    def dessiner_aiguille(self, pos, screen,couleur):
+    def dessiner_aiguille(self, pos, screen):
         self.__test_dessiner()
         pos1=(pos[0]+self.__taille*math.cos(2*math.pi/360*self.__current_theta),pos[1]+ self.__taille*math.sin(2*math.pi/360*self.__current_theta))
-        pygame.draw.line(screen, couleur, pos, pos1, 5 )
+        pygame.draw.line(screen, self.__couleur, pos, pos1, 5 )
 
 
     def set_aiguille(self,theta):

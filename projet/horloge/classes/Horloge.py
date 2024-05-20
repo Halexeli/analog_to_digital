@@ -51,9 +51,9 @@ class Horloge():
     def dessiner(self, screen):
         pygame.draw.circle(screen, "black", self.__pos_0, self.__rayon,self.__width)
         if(self.__butee):
-            self.__aiguille_1.dessiner_aiguille_butee(self.__pos_0,screen,"red")
-            self.__aiguille_2.dessiner_aiguille_butee(self.__pos_0,screen,"blue")
+            self.__aiguille_1.dessiner_aiguille_butee(self.__pos_0,screen)
+            self.__aiguille_2.dessiner_aiguille_butee(self.__pos_0,screen)
         else:
-            self.__aiguille_1.dessiner_aiguille(self.__pos_0,screen,"red")
-            self.__aiguille_2.dessiner_aiguille(self.__pos_0,screen,"blue")
+            self.__aiguille_1.dessiner_aiguille(self.__pos_0,screen)
+            self.__aiguille_2.dessiner_aiguille(self.__pos_0,screen)
             
