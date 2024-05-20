@@ -3,14 +3,14 @@ Simulateur d'horloges mécaniques pour former une horloge digitale
 
 ## Utilité :
 
-Ce projet permet de se représenter différentes transitions et chiffres que nous pourrions former avec des horloges en forme matricielle. Son utilité est principalement pour voir et pouvoir faire des choix matériels pour créer une horloge digitale avec des horloges mécaniques en ayant un aperçu de ce que l'horloge digitale montrerait.
+Ce projet permet de se représenter différentes transitions et chiffres que nous pourrions former avec des horloges en forme matricielle. Son utilité est principalement pour voir et pouvoir faire des choix matériels pour créer une horloge digitale avec des horloges à aiguilles en ayant un aperçu de ce que l'horloge digitale montrerait.
 
 ## Prise en main :
 
 Ce simulateur est composé de deux parties :
 <ul>
 <li>le code dans le dossier horloge permet d'afficher les transitions et horloges</li>
-<li>le code dans le dossier fichier permet d'envoyer les transitions et chiffres qu'on veut tester <b>après avoir lancer le code dans le dossier horloge</b></li>
+<li>le code dans le dossier fichier permet d'envoyer les transitions et chiffres qu'on veut tester <b>après avoir lancé le code dans le dossier horloge</b></li>
 </ul>
 
 ### Dossier horloge
@@ -19,15 +19,15 @@ Pour lancer le simulateur, il faut tout d'abord lancer simulateur.py (en étant 
 <ul>
 <li>--help ou -h : permet de voir ce qu'il faut mettre comme arguments</li>
 <li>--version : montre la version du simulateur</li>
-<li>< hauteur > < largeur > < nbligne > < nbcolonne > < butee > : permet de lancer le simulateur avec la taille de la fenêtre voulue (< hauteur > et < largeur >), le nombre d'horloges voulu avec le nombre de lignes et de colonnes voulu (< nbligne > et < nbcolonne >), ainsi que si on veut une butée (1) ou pas de butée (0)</li>
+<li>< hauteur > < largeur > < nbligne > < nbcolonne > < butée > : permet de lancer le simulateur avec la taille de la fenêtre voulue (< hauteur > et < largeur >), le nombre d'horloges voulu avec le nombre de lignes et de colonnes voulues (< nbligne > et < nbcolonne >), ainsi que si on veut une butée (1) ou pas de butée (0)</li>
 </ul>
 
 ### Dossier fichier
 
 Pour visualiser ce qu'on veut, nous avons deux possibilités (dans un autre terminal que celui du simulateur.py et dans le bon dossier) :
 <ul>
-<li>lancer test_transition.py et mettre en input le nom des transitions que l'on veut regarder sur le simulateur (les fichiers étant dans le dossier parametres)</li>
-<li>lancer fichier.py après avoir vérifier dans les dossiers parametres, transitions et chiffres que les informations sont bonnes avec les transitions que nous voulons (plus de détails après) avec comme argument un fichier dans parametres</li>
+  <li>lancer fichier.py après avoir vérifié dans les dossiers parametres, transitions et chiffres que les informations sont bonnes avec les transitions que nous voulons (plus de détails après) avec comme argument un fichier dans parametres</li>
+  <li>lancer test_transition.py aves les mêmes arguments, en pouvant changer la transition que nous voulons voir</li>
 </ul>
 
 #### Pour lancer fichier.py :
@@ -49,18 +49,18 @@ Notez qu'avec test_transition.py, activer la fonction pour éviter les butées a
 
 Les fichiers qu'on peut modifier sont :
 <ul>
-  <li>tout d'abord dans le dossiers parametres, il y a les paramètres globaux (on peut ajouter des lignes ou colonnes, changer les transitions, les fonctions cadres, modifier où apparaissent les chiffres ...)</li>
+  <li>tout d'abord dans le dossier parametres, il y a les paramètres globaux (on peut ajouter des lignes ou colonnes, changer les transitions, les fonctions cadres, modifier où apparaissent les chiffres ...)</li>
   <li>dans le dossier transitions, on peut ajouter ou modifier une transition (c'est aussi le cas dans generation_transition, il faut par contre supprimer le fichier correspondant dans le dossier transitions pour que la fonction soit appelée)</li>
   <li>dans le dossier chiffre, on peut modifier, ajouter des chiffres dans différents formats</li>
   <li>dans le dossier fonctions, dans le fichier fonctions_cadre.py, on peut modifier ou ajouter les fonctions qui génèrent les cadres</li>
 </ul>
-NB : Attention à ce que vous mettez les bonnes données, par exemple si vous mettez des nombres d'horloges différents, si vous mettez la butée d'un coté mais pas de l'autre ou si vous mettez un chiffre sur des horloges qui n'existent pas, vous n'aurez pas un résultat graphique satisfaisant ou vous aurez des erreurs. Aussi, au début de l'envoi des données sur test_transition.py surtout, les transitions ne sont pas complètement envoyées. Il faut attendre la deuxième fois qu'elles apparaissent pour les voir complètement.
+NB : Attention à ce que vous mettiez les bonnes données, par exemple si vous mettez des nombres d'horloges différents, si vous mettez la butée d'un côté mais pas de l'autre ou si vous mettez un chiffre sur des horloges qui n'existent pas, vous n'aurez pas un résultat graphique satisfaisant ou vous aurez des erreurs. Aussi, au début de l'envoi des données sur test_transition.py surtout, les transitions ne sont pas complètement envoyées. Il faut attendre la deuxième fois qu'elles apparaissent pour les voir complètement.
 
 ## Aide :
 
-Si vous êtes le groupe d'EI qui reprend le projet, aller faire un tour chez les MAIN4. Il y a nos noms en bas.  
+Si vous êtes le groupe d'EI qui reprend le projet, allez faire un tour chez les MAIN4. Il y a nos noms en bas.  
 
-## Contributeurs du projet et outils utilisé :
+## Contributeurs au projet et outils utilisés :
 Nous avons fait ce projet en python, du 14 février au 20 mai 2024.
 
 ### Ressource:
