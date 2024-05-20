@@ -54,17 +54,19 @@ class Aiguille():
             if(next_pos>=360): #si on depasse le 0 (ou egal a 0) aves sens==1
                 if(self.__current_theta%360<=self.goal_theta%360<=next_pos):  
                     self.__current_theta=self.goal_theta%360
-                    self.tps=0
+                    self.goal_theta=self.goal_theta%360
                 elif(self.__current_theta%360<=self.goal_theta%360+360<=next_pos):
                     self.__current_theta=self.goal_theta%360
-                    self.tps=0
+                    self.goal_theta=self.goal_theta%360
                 else:
                     self.__current_theta=next_pos%360
             elif(next_pos<=0): #si on depasse le 0 (ou egal a 0) avec le sens==-1
                 if(self.__current_theta%360>=self.goal_theta%360>=next_pos):
-                    self.__current_theta=self.goal_theta
+                    self.__current_theta=self.goal_theta%360
+                    self.goal_theta=self.goal_theta%360
                 elif(self.__current_theta%360>=self.goal_theta%360-360>=next_pos):
                     self.__current_theta=self.goal_theta%360
+                    self.goal_theta=self.goal_theta%360
                 else:
                     self.__current_theta=next_pos%360
             elif(self.goal_theta%360==0):#si on ne depasse pas le zero
@@ -72,11 +74,13 @@ class Aiguille():
             elif(self.sens==1): #cas simple sens==1
                 if(self.__current_theta%360<=self.goal_theta%360<=next_pos%360):
                     self.__current_theta=self.goal_theta%360
+                    self.goal_theta=self.goal_theta%360
                 else:
                     self.__current_theta=next_pos%360
             elif(self.sens==-1): #cas simple si sens==-1
                 if(self.__current_theta%360>=self.goal_theta%360>=next_pos%360):
                     self.__current_theta=self.goal_theta%360
+                    self.goal_theta=self.goal_theta%360
                 else:
                     self.__current_theta=next_pos%360
 
