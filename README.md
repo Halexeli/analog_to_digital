@@ -19,14 +19,14 @@ Pour lancer le simulateur, il faut tout d'abord lancer simulateur.py (en étant 
 <ul>
 <li>--help ou -h : permet de voir ce qu'il faut mettre comme arguments</li>
 <li>--version : montre la version du simulateur</li>
-<li>$<$hauteur$>$ $<$largeur$>$ $<$nbligne$>$ $<$nbcolonne$>$ $<$butee$>$ : permet de lancer le simulateur avec la taille de la fenêtre voulue ($<$hauteur$>$ et $<$largeur$>$), le nombre d'horloges voulu avec le nombre de lignes et de colonnes voulu ($<$nbligne$>$ et $<$nbcolonne$>$), ainsi que si on veut une butée (1) ou pas de butée (0)</li>
+<li>< hauteur > < largeur > < nbligne > < nbcolonne > < butee > : permet de lancer le simulateur avec la taille de la fenêtre voulue (< hauteur > et < largeur >), le nombre d'horloges voulu avec le nombre de lignes et de colonnes voulu (< nbligne > et < nbcolonne >), ainsi que si on veut une butée (1) ou pas de butée (0)</li>
 </ul>
 
 ### Dossier fichier
 
 Pour visualiser ce qu'on veut, nous avons deux possibilités (dans un autre terminal que celui du simulateur.py et dans le bon dossier) :
 <ul>
-<li>lancer test_transition.py et mettre en input le nom des transitions que l'on veut regarder sur le simulateur</li>
+<li>lancer test_transition.py et mettre en input le nom des transitions que l'on veut regarder sur le simulateur (les fichiers étant dans le dossier parametres)</li>
 <li>lancer fichier.py après avoir vérifier dans les dossiers parametres, transitions et chiffres que les informations sont bonnes avec les transitions que nous voulons (plus de détails après) avec comme argument un fichier dans parametres</li>
 </ul>
 
@@ -45,20 +45,37 @@ Pour lancer la fonction principale, il faut tout d'abord se placer dans le dossi
 Les consignes sont les mêmes que pour lancer fichier.py, à noter que les paramètres du simulateur (nombre de lignes, nombre de colonnes et butée) seront écrasés et remplacés automatiquement par ceux indiqués lors du lancement de test_transition.py.
 Notez qu'avec test_transition.py, activer la fonction pour éviter les butées active automatiquement les butées sur le simulateur et inversement.
 
+#### Données qu'on peut modifier pour tester des transitions différentes :
+
+Les fichiers qu'on peut modifier sont :
+<ul>
+  <li>tout d'abord dans le dossiers parametres, il y a les paramètres globaux (on peut ajouter des lignes ou colonnes, changer les transitions, les fonctions cadres, modifier où apparaissent les chiffres ...)</li>
+  <li>dans le dossier transitions, on peut ajouter ou modifier une transition (c'est aussi le cas dans generation_transition, il faut par contre supprimer le fichier correspondant dans le dossier correspondant pour que la fonction soit appelée)</li>
+  <li>dans le dossier chiffre, on peut modifier, ajouter des chiffres dans différents formats</li>
+  <li>dans le dossier fonctions, dans le fichier fonctions_cadre.py, on peut modifier ou ajouter les fonctions qui génèrent les cadres</li>
+</ul>
+Attention à ce que vous mettez les bonnes données, par exemple si vous mettez des nombres d'horloges différents ou si vous mettez la butée d'un coté mais pas de l'autre, si vous mettez un chiffre sur des horloges qui n'existent pas, vous n'aurez pas un résultat graphique satisfaisant (si vous lancez fichier.py).
+
 ## Aide :
 
 Si vous êtes le groupe d'EI qui reprend le projet, aller faire un tour chez les MAIN4. Il y a nos noms en bas.  
 
 ## Contributeurs du projet et outils utilisé :
-Nous avons fait ce projet en python, du 14 février au 19 mai 2024.
+Nous avons fait ce projet en python, du 14 février au 20 mai 2024.
 
 ### Ressource:
 <ul>
-<li>socketio</li>
-<li>pygame</li>
-<li>time</li>
-<li>json</li>
-<li>pickle</li>
+  <li>socketio</li>
+  <li>pygame</li>
+  <li>time</li>
+  <li>json</li>
+  <li>pickle</li>
+  <li>queue</li>
+  <li>regular expression (re)</li>
+  <li>datetime</li>
+  <li>importlib</li>
+  <li>thread</li>
+  <li>docopt</li>
 </ul>
 
 ### Contributeurs :
