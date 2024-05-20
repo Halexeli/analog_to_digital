@@ -54,7 +54,7 @@ Les fichiers qu'on peut modifier sont :
   <li>dans le dossier chiffre, on peut modifier, ajouter des chiffres dans différents formats</li>
   <li>dans le dossier fonctions, dans le fichier fonctions_cadre.py, on peut modifier ou ajouter les fonctions qui génèrent les cadres</li>
 </ul>
-Attention à ce que vous mettez les bonnes données, par exemple si vous mettez des nombres d'horloges différents, si vous mettez la butée d'un coté mais pas de l'autre ou si vous mettez un chiffre sur des horloges qui n'existent pas, vous n'aurez pas un résultat graphique satisfaisant.
+NB : Attention à ce que vous mettez les bonnes données, par exemple si vous mettez des nombres d'horloges différents, si vous mettez la butée d'un coté mais pas de l'autre ou si vous mettez un chiffre sur des horloges qui n'existent pas, vous n'aurez pas un résultat graphique satisfaisant ou vous aurez des erreurs. Aussi, au début de l'envoi des données sur test_transition.py surtout, les transitions ne sont pas complètement envoyées. Il faut attendre la deuxième fois qu'elles apparaissent pour les voir complètement.
 
 ## Aide :
 
